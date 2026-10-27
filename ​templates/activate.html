@@ -1,0 +1,21 @@
+templates/message.html{% extends "base.html" %}
+{% block title %}Kartı Etkinleştir{% endblock %}
+{% block body %}
+<div class="center">
+  <form class="panel" method="post" action="{{ url_for('activate', card_id=card.card_id) }}">
+    <h1>Kartı Etkinleştir</h1>
+    <p>Bu kart yeni ve henüz bir bağlantıya bağlanmadı. Müşterileriniz kartı okuttuğunda açılmasını istediğiniz bağlantıyı girin.</p>
+    {% if error %}<div class="alert error" role="alert">{{ error }}</div>{% endif %}
+    <input type="hidden" name="_csrf" value="{{ csrf_token() }}">
+    <label for="destination">Hedef bağlantı</label>
+    <input id="destination" class="ltr" type="url" name="destination" value="{{ value }}"
+           placeholder="https://g.page/r/..." inputmode="url" autocomplete="off" required autofocus>
+    <ul class="hints muted">
+      <li>İşletmenizin Google Haritalar yorum bağlantısı</li>
+      <li>Instagram, TikTok, WhatsApp sayfanız veya herhangi bir web sitesi</li>
+    </ul>
+    <button class="btn block" type="submit">Kartı etkinleştir</button>
+    <p class="muted" style="margin:16px 0 0">Etkinleştirmeden sonra bağlantı bu karta sabitlenir ve yalnızca yönetim panelinden değiştirilebilir.</p>
+  </form>
+</div>
+{% endblock %}
