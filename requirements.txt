@@ -1,0 +1,4 @@
+Flask>=3.0
+segno>=1.6
+gunicorn>=22.0
+tzdata>=2024.1
